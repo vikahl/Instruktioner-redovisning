@@ -1,0 +1,529 @@
+% Taken from https://gist.github.com/dgleich/1046680
+% License:
+% This program is free software; you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation; either version 2 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program; see the file COPYING. If not, write to
+% the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+% Boston, MA 02111-1307, USA.
+ 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+ 
+\ProvidesPackage{tufte-sidenotes}[2009/05/17 v3.0.0 Sidenotes code from the Tufte-LaTeX styles]
+ 
+%%
+% We use the `xifthen' package to handle our package option switches
+\RequirePackage{xifthen}
+\RequirePackage{ragged2e}
+\RequirePackage{setspace}
+ 
+\newboolean{@tufte@changepage}
+\IfFileExists{changepage.sty}{%
+\RequirePackage[strict]{changepage}
+\setboolean{@tufte@changepage}{true}
+}{%
+\RequirePackage[strict]{chngpage}
+\setboolean{@tufte@changepage}{false}
+}
+ 
+\RequirePackage{caption}
+ 
+\newboolean{@tufte@sidenotes@replace@envs}
+\DeclareOption{replace}{\setboolean{@tufte@sidenotes@replace@envs}{true}}
+\DeclareOption{noreplace}{\setboolean{@tufte@sidenotes@replace@envs}{false}}
+\ProcessOptions
+ 
+% Create lengths to store the default paragraph options
+\newlength{\@tufte@reset@par@RaggedRightParindent}
+\newlength{\@tufte@reset@par@parindent}
+\newlength{\@tufte@reset@par@parskip}
+% Create a command to store them
+\newcommand{\@tufte@reset@par@store}{
+\setlength{\@tufte@reset@par@RaggedRightParindent}{\RaggedRightParindent}%
+\setlength{\@tufte@reset@par@parindent}{\parindent}%
+\setlength{\@tufte@reset@par@parskip}{\parskip}%
+}
+% Store these variables at the start of the document.
+\AtBeginDocument{\@tufte@reset@par@store}
+\newcommand{\@tufte@reset@par}{%
+\setlength{\RaggedRightParindent}{\@tufte@reset@par@RaggedRightParindent}%
+\setlength{\parindent}{\@tufte@reset@par@parindent}%
+\setlength{\parskip}{\@tufte@reset@par@parskip}%
+}
+ 
+% Paragraph indentation and separation for marginal text
+\newcommand{\@tufte@margin@par}{%
+\setlength{\RaggedRightParindent}{0.5pc}%
+\setlength{\parindent}{0.5pc}%
+\setlength{\parskip}{0pt}%
+}
+ 
+%
+\newcommand{\@tufte@marginfont}{\normalfont\footnotesize}
+\newcommand{\@tufte@justification}{\RaggedRight}%
+ 
+% Compute lengths used for full-width displays
+ 
+\newlength{\@tufte@overhang}
+\setlength{\@tufte@overhang}{\marginparwidth}
+\addtolength{\@tufte@overhang}{\marginparsep}
+ 
+\newlength{\@tufte@fullwidth}
+\setlength{\@tufte@fullwidth}{\textwidth}
+\addtolength{\@tufte@fullwidth}{\marginparsep}
+\addtolength{\@tufte@fullwidth}{\marginparwidth}
+ 
+\newlength{\@tufte@caption@fill}
+\setlength{\@tufte@caption@fill}{\textwidth}
+\addtolength{\@tufte@caption@fill}{\marginparsep}
+ 
+\newenvironment{fullwidth}{\begin{adjustwidth}{}{-\@tufte@overhang}}%
+{\end{adjustwidth}}
+ 
+ 
+\RequirePackage{optparams}% for our new sidenote commands -- provides multiple optional arguments for commands
+ 
+% save the current footnote commands
+\let\@tufte@old@footnotemark\@footnotemark
+\let\@tufte@old@footnotetext\@footnotetext
+\let\@tufte@old@footnote\footnote
+ 
+\newenvironment{footnotes}{%
+\let\@tufte@cur@footnotemark\@footnotemark% save current commands
+\let\@tufte@cur@footnotetext\@footnotetext%
+\let\@tufte@cur@footnote\footnote%
+\let\@footnotemark\@tufte@old@footnotemark% restore initial commands
+\let\@footnotetext\@tufte@old@footnotetext%
+\let\footnote\@tufte@old@footnote%
+}{%
+\let\@footnotemark\@tufte@cur@footnotemark%
+\let\@footnotetext\@tufte@cur@footnotetext%
+\let\footnote\@tufte@cur@footnote%
+}
+ 
+\providecommand*{\footnotelayout}{\@tufte@marginfont\@tufte@justification}
+\renewcommand{\footnotelayout}{\@tufte@marginfont\@tufte@justification}
+ 
+% Override footmisc's definition to set the sidenote marks (numbers) inside the
+% sidenote's text block.
+\long\def\@makefntext#1{\@textsuperscript{\@tufte@marginfont\tiny\@thefnmark}\,\footnotelayout#1}
+ 
+% Set the in-text footnote mark in the same typeface as the body text itself.
+\def\@makefnmark{\hbox{\@textsuperscript{\normalfont\footnotesize\@thefnmark}}}
+ 
+\providecommand*{\multiplefootnotemarker}{3sp}
+\providecommand*{\multfootsep}{,}
+ 
+\renewcommand*\@footnotemark{%
+\leavevmode%
+\ifhmode%
+\edef\@x@sf{\the\spacefactor}%
+\@tufte@check@multiple@sidenotes%
+\nobreak%
+\fi%
+\@makefnmark%
+\ifhmode\spacefactor\@x@sf\fi%
+\relax%
+}
+ 
+\newcommand{\@tufte@check@multiple@sidenotes}{%
+\ifdim\lastkern=\multiplefootnotemarker\relax%
+\edef\@x@sf{\the\spacefactor}%
+\unkern%
+\textsuperscript{\multfootsep}%
+\spacefactor\@x@sf\relax%
+\fi
+}
+ 
+\renewcommand\@footnotetext[2][0pt]{%
+\marginpar{%
+\hbox{}\vspace*{#1}%
+\def\baselinestretch {\setspace@singlespace}%
+\reset@font\footnotesize%
+\@tufte@margin@par% use parindent and parskip settings for marginal text
+\vspace*{-1\baselineskip}\noindent%
+\protected@edef\@currentlabel{%
+\csname p@footnote\endcsname\@thefnmark%
+}%
+\color@begingroup%
+\@makefntext{%
+\ignorespaces#2%
+}%
+\color@endgroup%
+}%
+\@tufte@reset@par% use parindent and parskip settings for body text
+}%
+ 
+%
+% Define \sidenote command. Can handle \cite.
+ 
+\newcommand{\@tufte@sidenote@vertical@offset}{0pt}
+ 
+% #1 = footnote num, #2 = vertical offset, #3 = footnote text
+\long\def\@tufte@sidenote[#1][#2]#3{%
+%\let\cite\@tufte@infootnote@cite% use the in-sidenote \cite command
+\gdef\@tufte@citations{}% clear out any old citations
+\ifthenelse{\NOT\isempty{#2}}{\renewcommand{\@tufte@sidenote@vertical@offset}{#2}}{}%
+\ifthenelse{\isempty{#1}}{%
+% no specific footnote number provided
+\stepcounter\@mpfn%
+\protected@xdef\@thefnmark{\thempfn}%
+\@footnotemark\@footnotetext[\@tufte@sidenote@vertical@offset]{#3}%
+}{%
+% specific footnote number provided
+\begingroup%
+\csname c@\@mpfn\endcsname #1\relax%
+\unrestored@protected@xdef\@thefnmark{\thempfn}%
+\endgroup%
+\@footnotemark\@footnotetext[\@tufte@sidenote@vertical@offset]{#3}%
+}%
+%\@tufte@print@citations% print any citations
+%\let\cite\@tufte@normal@cite% go back to using normal in-text \cite command
+\unskip\ignorespaces% remove extra white space
+\kern-\multiplefootnotemarker% remove \kern left behind by sidenote
+\kern\multiplefootnotemarker\relax% add new \kern here to replace the one we yanked
+}
+ 
+\newcommand*{\sidenote}{\optparams{\@tufte@sidenote}{[][0pt]}}
+\renewcommand*{\footnote}{\optparams{\@tufte@sidenote}{[][0pt]}}
+ 
+%%
+% Sidenote without the footnote mark
+ 
+\newcommand\marginnote[2][0pt]{%
+\marginpar{\hbox{}\vspace*{#1}\@tufte@marginfont%
+\def\baselinestretch {\setspace@singlespace}%
+\reset@font\footnotesize%
+\@tufte@margin@par% use parindent and parskip settings for marginal text
+\@tufte@justification\vspace*{-1\baselineskip}\noindent #2%
+\@tufte@reset@par% use parindent and parskip settings for body text
+}
+}
+ 
+ 
+%%
+%
+% \RequirePackage{graphics}
+% \let\LS@makecol=\@makecol
+% \let\LS@makefcolumn=\@makefcolumn
+% \def\LS@rot{%
+% \setbox\@outputbox\vbox{\hbox{\rotatebox{90}{\box\@outputbox}}}}
+% \def\landscape{%
+% \clearpage
+% \begingroup
+% \vsize=\textwidth
+% \hsize=\textheight
+% \linewidth=\hsize
+% \columnwidth=\hsize
+% \@colroom=\vsize
+% \textheight=\vsize
+% \@colht=\vsize
+% \def\@makecol{\LS@makecol\LS@rot}%
+% \def\@makefcolumn##1{\LS@makefcolumn{##1}\LS@rot}}
+% \def\endlandscape{%
+% \ifGin@pdftex
+% \pdfpageattr{/Rotate 90}
+% \fi
+% \clearpage
+% \endgroup
+% \global\@colht=\textheight
+% \global\vsize=\textheight
+% \global\@colroom=\textheight}
+%
+ 
+%%
+% The placeins package provides the \FloatBarrier command. This forces
+% LaTeX to place all of the floats before proceeding. We'll use this to
+% keep the float (figure and table) numbers in sequence.
+\RequirePackage{placeins}
+ 
+%%
+% Margin float environment
+ 
+\newsavebox{\@tufte@margin@floatbox}
+\newenvironment{@tufte@margin@float}[2][-1.2ex]%
+{\FloatBarrier% process all floats before this point so the figure/table numbers stay in order.
+\begin{lrbox}{\@tufte@margin@floatbox}%
+\begin{minipage}{\marginparwidth}%
+\hbox{}\vspace*{#1}%
+\captionsetup{type=#2}%
+\def\@captype{#2}%
+\@tufte@marginfont%
+\@tufte@justification%
+\@tufte@margin@par%
+\noindent\ignorespaces%
+}
+{\end{minipage}%
+\end{lrbox}%
+\marginpar{\usebox{\@tufte@margin@floatbox}}%
+}
+%%
+% add proper caption types
+ 
+ 
+%%
+% Margin figure environment
+ 
+\newenvironment{marginfigure}[1][-1.2ex]%
+{\begin{@tufte@margin@float}[#1]{figure}}
+{\end{@tufte@margin@float}}
+ 
+ 
+%%
+% Margin table environment
+\newenvironment{margintable}[1][-1.2ex]%
+{\begin{@tufte@margin@float}[#1]{table}}
+{\end{@tufte@margin@float}}
+ 
+ 
+%%
+% A collection of macros to be used with the new Tufte-style float environments
+ 
+\newboolean{@tufte@symmetric}
+\setboolean{@tufte@symmetric}{false}
+ 
+% Write our own aliases for the \checkoddpage and \ifoddpage or \ifcpoddpage commands
+\newboolean{@tufte@odd@page}
+\setboolean{@tufte@odd@page}{true}
+\newcommand*{\@tufte@checkoddpage}{%
+\checkoddpage%
+\ifthenelse{\boolean{@tufte@changepage}}{%
+\ifoddpage%
+\setboolean{@tufte@odd@page}{true}%
+\else%
+\setboolean{@tufte@odd@page}{false}%
+\fi%
+}{%
+\ifcpoddpage%
+\setboolean{@tufte@odd@page}{true}%
+\else%
+\setboolean{@tufte@odd@page}{false}%
+\fi
+}%
+}
+ 
+\newcommand{\tuftefloatalignment}{t}
+\newcommand{\floatalignment}{x}% holds the current float alignment (t, b, h, p)
+\newcommand{\setfloatalignment}[1]{\renewcommand{\floatalignment}{#1}}% manually sets the float alignment
+ 
+% Boxes to temporarily store our float and caption
+\newsavebox{\@tufte@figure@box}
+\newsavebox{\@tufte@caption@box}
+ 
+% Save original LaTeX float environment
+\let\@tufte@orig@float\@float
+\let\@tufte@orig@endfloat\end@float
+ 
+% Save original LaTeX \caption and \label commands
+\AtBeginDocument{%
+\let\@tufte@orig@caption\caption%
+\let\@tufte@orig@label\label%
+}
+ 
+% Store the caption and label contents
+\newcommand{\@tufte@stored@shortcaption}{}
+\newcommand{\@tufte@stored@caption}{}
+\newcommand{\@tufte@stored@label}{}
+ 
+\newcommand{\@tufte@caption}[2][]{%
+\ifthenelse{\isempty{#1}}
+{\gdef\@tufte@stored@shortcaption{#2}}%
+{\gdef\@tufte@stored@shortcaption{#1}}%
+\gdef\@tufte@stored@caption{#2}%
+}
+ 
+\newcommand{\@tufte@label}[1]{%
+\gdef\@tufte@stored@label{#1}%
+}
+ 
+% define alternate caption commands
+\newcommand{\tuftecaptioncommand}{}
+ 
+\newcommand{\@tufte@fps}{}
+ 
+% TODO make sure new caption and figure code can handle [p] and [h] placements well
+% TODO handle the symmetric class option (move caption to other side of verso pages)
+ 
+%%
+% Define a float environment to place the captions in the margin space
+ 
+\newenvironment{@tufte@float}[2][htbp]
+{% If the float placement specifier is 'b' and only 'b', then bottom-align the mini-pages, otherwise top-align them.
+\renewcommand{\@tufte@fps}{#1}%
+\ifthenelse{\equal{#1}{b}\OR\equal{#1}{B}}%
+{\renewcommand{\floatalignment}{b}}%
+{\renewcommand{\floatalignment}{t}}%
+\let\@tufte@orig@label=\label%
+\renewcommand{\caption}[2][]{\@tufte@caption[##1]{##2}}%
+\renewcommand{\label}[1]{\@tufte@label{##1}}%
+\@tufte@orig@float{#2}[#1]%
+\begin{lrbox}{\@tufte@figure@box}%
+\begin{minipage}[\floatalignment]{\textwidth}\hbox{}%
+}
+{% end @tufte@float
+\par\hbox{}\vspace{-\baselineskip}\ifthenelse{\prevdepth>0}{\vspace{-\prevdepth}}{}% align baselines of boxes
+\end{minipage}%
+\end{lrbox}%
+% build the caption box
+\begin{lrbox}{\@tufte@caption@box}%
+\begin{minipage}[\floatalignment]{\marginparwidth}\hbox{}%
+\ifthenelse{\NOT\equal{\@tufte@stored@caption}{}}{%\@tufte@orig@caption[\@tufte@stored@shortcaption]{\@tufte@stored@caption}}{}%
+\ifthenelse{\equal{\tuftecaptioncommand}{}}{%
+\@tufte@orig@caption[\@tufte@stored@shortcaption]{\@tufte@stored@caption}
+}{%
+\tuftecaptioncommand[\@tufte@stored@shortcaption]{\@tufte@stored@caption}%
+}%
+}{}%
+\ifthenelse{\NOT\equal{\@tufte@stored@label}{}}{\@tufte@orig@label{\@tufte@stored@label}}{}%
+\par\vspace{-\prevdepth}%% TODO: DOUBLE-CHECK FOR SAFETY
+\end{minipage}%
+\end{lrbox}%
+% now typeset the stored boxes
+\begin{fullwidth}%
+\begin{minipage}[\floatalignment]{\linewidth}%
+\@tufte@checkoddpage%
+\ifthenelse{\NOT\boolean{@tufte@symmetric}\OR\boolean{@tufte@odd@page}}{%
+% asymmetric or page is odd, so caption is on the right
+\usebox{\@tufte@figure@box}%
+\hspace{\marginparsep}%
+\smash{\usebox{\@tufte@caption@box}}%
+}{%
+% symmetric pages and page is even, so caption is on the left
+\strut\smash{\usebox{\@tufte@caption@box}}%
+\hspace{\marginparsep}%
+\usebox{\@tufte@figure@box}%
+}%
+\end{minipage}%
+\end{fullwidth}%
+\@tufte@orig@endfloat%
+% reset commands and temp boxes and captions
+\let\caption\@tufte@orig@caption%
+\let\label\@tufte@orig@label%
+\begin{lrbox}{\@tufte@figure@box}\hbox{}\end{lrbox}%
+\begin{lrbox}{\@tufte@caption@box}\hbox{}\end{lrbox}%
+\gdef\@tufte@stored@shortcaption{}%
+\gdef\@tufte@stored@caption{}%
+}
+ 
+ 
+ 
+\newenvironment{tuftefigure}[1][htbp]%
+{\begin{@tufte@float}[#1]{figure}}%
+{\end{@tufte@float}}%
+\newenvironment{tuftetable}[1][htbp]
+{\begin{@tufte@float}[#1]{table}}
+{\end{@tufte@float}}
+ 
+ 
+\ifthenelse{\boolean{@tufte@sidenotes@replace@envs}}{%
+%%
+% Redefine the figure environment to place the captions in the margin space
+%
+\renewenvironment{figure}[1][htbp]%
+{\begin{@tufte@float}[#1]{figure}}%
+{\end{@tufte@float}}%
+%%
+% Redefine the table environment to place the captions in the margin space
+%
+\renewenvironment{table}[1][htbp]%
+{\begin{@tufte@float}[#1]{table}}%
+{\end{@tufte@float}}%
+}{}
+ 
+%%
+% Full-width figures and tables
+ 
+\newenvironment{@tufte@float@star}[2][htbp]%
+{% begin
+% If the float placement specifier is 'b' and only 'b', then place the caption above the figure, else place the caption below the figure.
+\renewcommand{\@tufte@fps}{#1}%
+\ifthenelse{\equal{#1}{b}\OR\equal{#1}{B}}%
+{\renewcommand{\floatalignment}{b}}%
+{\renewcommand{\floatalignment}{\tuftefloatalignment}}%
+\let\@tufte@orig@caption=\caption%
+\renewcommand{\caption}[2][]{\@tufte@caption[##1]{##2}}%
+\let\@tufte@orig@label=\label%
+\renewcommand{\label}[1]{\@tufte@label{##1}}%
+\@tufte@orig@float{#2}[#1]%
+\begin{lrbox}{\@tufte@figure@box}%
+\begin{minipage}[\floatalignment]{\textwidth}\hbox{}%
+\begin{fullwidth}%
+}%
+{% end figure*
+\par\hbox{}\vspace{-\baselineskip}\ifthenelse{\prevdepth>0}{\vspace{-\prevdepth}}{}% align baselines of boxes
+\end{fullwidth}%
+\end{minipage}%
+\end{lrbox}%
+% build the caption box
+% TODO use \captionaboveskip and \captionbelowskip for spacing between caption and figure boxes
+\begin{lrbox}{\@tufte@caption@box}%
+\begin{minipage}[\floatalignment]{\marginparwidth}\hbox{}%
+\vspace{1ex}\@tufte@justification%
+\ifthenelse{\NOT\equal{\@tufte@stored@caption}{}}{%
+\ifthenelse{\equal{\tuftecaptioncommand}{}}{%
+\@tufte@orig@caption[\@tufte@stored@shortcaption]{\@tufte@stored@caption}
+}{%
+\tuftecaptioncommand[\@tufte@stored@shortcaption]{\@tufte@stored@caption}%
+}%
+}{}%
+\ifthenelse{\NOT\equal{\@tufte@stored@label}{}}{\@tufte@orig@label{\@tufte@stored@label}}{}%
+\par\vspace{-\prevdepth}%% TODO: DOUBLE-CHECK FOR SAFETY
+\end{minipage}%
+\end{lrbox}%
+% now typeset the stored boxes
+\@tufte@checkoddpage%
+\begin{fullwidth}%
+\begin{minipage}[\floatalignment]{\linewidth}%
+\ifthenelse{\equal{\floatalignment}{b}}%
+{% place caption above figure
+\ifthenelse{\NOT\boolean{@tufte@symmetric}\OR\boolean{@tufte@odd@page}}%
+{% caption on the right
+\hfill\smash{\usebox{\@tufte@caption@box}}%
+\par\usebox{\@tufte@figure@box}%
+}{% caption on the left
+\smash{\usebox{\@tufte@caption@box}}\hfill\null%
+\par\hspace{\@tufte@overhang}\usebox{\@tufte@figure@box}%
+}%
+}%
+{% place caption below figure
+\ifthenelse{\NOT\boolean{@tufte@symmetric}\OR\boolean{@tufte@odd@page}}%
+{% caption on the right
+\usebox{\@tufte@figure@box}\par%
+\hspace{\@tufte@caption@fill}\smash{\usebox{\@tufte@caption@box}}%
+}{% caption on the left
+\null\hspace{\@tufte@overhang}\usebox{\@tufte@figure@box}\par%
+\smash{\usebox{\@tufte@caption@box}}\hfill%
+}%
+}%
+\end{minipage}%
+\end{fullwidth}%
+\@tufte@orig@endfloat%
+% reset commands and temp boxes and captions
+\let\caption\@tufte@orig@caption%
+\let\label\@tufte@orig@label%
+\begin{lrbox}{\@tufte@figure@box}\hbox{}\end{lrbox}%
+\begin{lrbox}{\@tufte@caption@box}\hbox{}\end{lrbox}%
+\gdef\@tufte@stored@shortcaption{}%
+\gdef\@tufte@stored@caption{}%
+}
+ 
+ 
+%%
+% Full-width figure
+ 
+\newenvironment{fullwidthfigure}[1][htbp]%
+{\begin{@tufte@float@star}[#1]{figure}}%
+{\end{@tufte@float@star}}%
+\newenvironment{fullwidthtable}[1][htbp]%
+{\begin{@tufte@float@star}[#1]{table}}%
+{\end{@tufte@float@star}}%
+ 
+\endinput

@@ -34,19 +34,18 @@
 \usepackage{graphicx}
 
 % Ändra sidstorleken
-\usepackage{geometry}
+% \usepackage{geometry}
 
-\geometry{a4paper,left=24.8mm,top=27.4mm,
-		headsep=2\baselineskip,textwidth=107mm,
-		marginparsep=8.2mm,marginparwidth=49.4mm,
-		textheight=49\baselineskip,headheight=\baselineskip}
+% \geometry{a4paper,left=24.8mm,top=27.4mm,
+% 		headsep=2\baselineskip,textwidth=107mm,
+% 		marginparsep=8.2mm,marginparwidth=49.4mm,
+% 		textheight=49\baselineskip,headheight=\baselineskip}
 			
 % amsmath är en samling nästan nödvändiga paket för att typsätta matematik.
 % \usepackage[tbtags,intlimits]{amsmath}
 
 % Scrpage2 från KOMA-Script för sidhuvuden och -fötter.
 \usepackage{scrpage2}
-
 
 % Polyglossia är ett paket som lägger till flerspråksstöd i LaTeX. 
 \usepackage{polyglossia}
@@ -158,10 +157,8 @@
 {}
 
 % Skrota fullwidth och använd minipage
-% \makeatletter
-% \newlength{\fullwidthlength}
-% \AtBeginDocument{\setlength{\fullwidthlength}{\@tufte@fullwidth}}
-% \makeatother
+\newlength{\fullwidthlength}
+\AtBeginDocument{\setlength{\fullwidthlength}{\textwidth}}
 
 % Stäng av numrering av rubriker
 \setcounter{secnumdepth}{-1}
