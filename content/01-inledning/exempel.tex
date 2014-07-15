@@ -1,0 +1,64 @@
+\section{Bokföringsexempel}
+\todo{Uppdatera det här avsnittet med rätt kontonummer och kostnadsställen}
+Nedan följer några exempel på verifikat och bokförda transaktioner.
+
+\subsection{Inköp av förbrukningsmateriel}
+I det här exemplet har det köps in lödtenn och annan förbrukningsmateriel för att använda i labbet.
+Betalningen har skett med kontokort och totala summan av de inköpta varorna är 285~kr. Då sakerna ska användas i labbet anger vi också labbets kostnadsställe.
+
+I och med den här betalningen har saldot på bankkontot minskats, och bankkontot ska därför krediteras. För att summan ska bli lika stora i båda kolumnerna måste kostnadskontot således debeteras.
+
+\begin{longtable}{llrr}
+	\caption{Exempel: Bokföra materielinköp}\\
+	Konto	& Kontonamn					& Debet		& Kredit\\ \toprule
+	1930	& Företagskonto				& 			& 285~kr\\
+	5410.10	& Förbrukningsinventarier	& 285~kr	& \\ \bottomrule
+			& Summa						& 285~kr	& 285~kr
+\end{longtable}
+
+\subsection{Inbetalning av medlemsavgift}
+Nu har \acr{eta} istället fått pengar i form av en medlem som har betalat in sin medlemsavgift. Då \acr{eta} bara har en typ av medlemsavgift finns det ingen anledning att särskilja på dessa med till exempel kostnadsställen.
+
+I det här exemplet sätts pengar in på bankkontot, och det ska alltså debeteras. För att summan av debet och kredit ska bli lika stora måste således kontot för medlemsavgifter krediteras.
+
+\begin{longtable}{llrr}
+	\caption{Exempel: Bokföra medlemsavgift}\\
+	Konto	& Kontonamn					& Debet		& Kredit\\ \toprule
+	1930	& Företagskonto				& 100~kr	& \\
+	3210	& Medlemsavgifter			& 			& 100~kr\\ \bottomrule
+			& Summa						& 100~kr	& 100~kr
+\end{longtable}
+
+\subsection{Inköp av hylla till förrådet}
+% I det här fallet behövs en ny hylla till förrådet. När man köper in inventarier redovisas de normalt som tillgångar och skrivs av under sin livslängd. För inventarier av mindre värde\footnote{Anskaffningsvärde som understiger ett halvt prisbasbelopp, 22\,000~kr (2014)} kan utgiften istället kostnadsföras som förbrukningsinventarier. \acr{Eta} får dock alltid bokföra inventarieinköp som direkta kostnader, men det kan vara bra att känna till de allmänna principerna också.
+
+Hyllan i exemplet kostade 5\,200~kr och har betalats med kontokort. Saldot på bankkontot minskade, alltså ska det kontot debeteras.
+
+\begin{longtable}{llrr}
+	\caption{Exempel: Bokföra inventarieinköp}\\
+	Konto	& Kontonamn					& Debet		& Kredit\\ \toprule
+	1930	& Företagskonto				& 			& 5\,200~kr\\
+	5411.20	& Förbrukningsinventarier	& 5\,200~kr	& \\ \bottomrule
+			& Summa						& 5\,200~kr	& 5\,200~kr
+\end{longtable}
+
+\subsection{Inköp till kylen}
+% När varor till kylen köps in får \acr{eta} ett varulager som har ett värde. Man kan tänka sig att man bokför varuinköpet som en kostnad och sedan varuförsäljningen som en inkomst, men det är då svårt att se om man
+
+När det gäller inköp av varor kan de bokföras på olika sätt. I ett företag hade man bokfört inköpet som att värdet på varulagret ökade, men för \acr{eta} tror jag det blir för svårt att hålla i en rutin med varulager när det gäller kylarna. De fungerar ju på sådant sätt att medlemmarna själva betalar och det är svårt att veta exakt vad som säljs (även om man kan räkna på lagervärde). Ibland ges delar av lagret bort (mutgodis) och då måste det bokföras, vilket antagligen blir onödigt komplicerat.
+
+Därför bokförs inköpen till kylen som en kostnad, och när försäljningen sedan sker uppstår en inkomst.
+\begin{longtable}{llrr}
+	\caption{Exempel: Bokföra inventarieinköp}\\
+	Konto	& Kontonamn					& Debet		& Kredit\\ \toprule
+	1930	& Företagskonto				& 			& 7\,869~kr\\
+	4011	& Inköp av varor			& 7\,869~kr	& \\ \bottomrule
+			& Summa						& 7\,869~kr	& 7\,869~kr
+\end{longtable}
+
+
+\subsection{Försäljning via kylen}
+
+
+
+\subsection{Insättning av kylkassa}

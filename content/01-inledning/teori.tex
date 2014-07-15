@@ -1,0 +1,89 @@
+\section{Dubbel bokföring}
+Den enklaste formen av bokföring är enkel bokföring, där varje transaktion skrivs upp på ett ställe. Köper man till exempel lödtenn för 100~kr skriver man upp lödtenn i kategorin \emph{Förbrukningsmateriel labb}. En personlig kassabok fungerar oftast på det här sättet.
+Vid dubbel bokföring skrivs varje transaktion upp två gånger, man beskriver både var pengarna kommer ifrån och var de går. Med samma inköp på lödtenn för 100~kr hade man i dubbel bokföring noterat att pengarna kom från bankkontot och gick till förbrukningsmateriel.
+
+Dubbel bokföring gör det mycket enklare att upptäcka fel och att göra avstämningar mellan olika konton. I stort sett samtliga affärssystem som finns för bokföring använder dubbel bokföring och i den resterande delen av den här texten kommer bara dubbel bokföring att användas.
+
+\section{Verifikationer}
+För varje affärstransaktion ska det finnas ett underlag som beskriver händelsen. Oftast är detta ett kvitto vid inköp, ett kontoutdrag eller en faktura. Den här handlingen kallas verifikation och för varje transaktion ska det finnas ett verifikat i bokföringen i den ordningen som transaktionerna ägt rum.
+
+Finns det inga externa underlag som kvitton, till exempel vid bokföringsmässiga transaktioner kan man skriva en bokföringsorder.\todo{Här ska det in text}
+
+\section{Konton}
+När man pratar om konton i bokföring menar man inte alltid bankkonton. Ett konto i bokföringen är en redovisningspost, en kategori, snarare än ett konto på banken. Visserligen har föreningens bankkonto även ett konto i bokföringen men även till exempel förbrukningsinventarier, medlemsavgifter och inventarier har konton i bokföringen.
+
+Man delar upp kontona i fyra olika kategorier, olika kontoslag:
+\begin{itemize}\itemsep2pt
+	\item tillgångar
+	\item skulder
+	\item intäkter
+	\item kostnader
+\end{itemize}
+
+\subsection{Tillgångskonton}
+\marginnote[\baselineskip]{
+Konto: 1\,000--1\,999\\
+\begin{tabular}{l|l}
+	\textbf{debet}		& \textbf{kredit} \\\hline
+	\emph{pengar in}	& \emph{pengar ut}\\
+	tillgångsökning		& tillgångsminskning 
+\end{tabular}
+}
+Tillgångskontona används för att bokföra sådant som föreningen äger. Detta innefattar dels likvida medel som pengar på bankkontot, kylkassan och liknande. I den mån föreningen äger inventarier eller maskiner som har ett bokfört värde så bokförs även det på bokföringskonto.
+
+Är medlemmar eller andra personer skyldiga pengar har föreningen en fordran och detta skrivs upp som en tillgång. Om föreningen istället är skyldig en person pengar är detta en skuld, inte en negativ fordran, och ska bokföras på skuldkonton.
+
+\subsection{Skuldkonton}
+\marginnote[\baselineskip]{
+Konto: 2\,000--2\,999\\
+\begin{tabular}{l|l}
+	\textbf{debet}			& \textbf{kredit} \\\hline
+	\emph{skuld minskar}	& \emph{skuld ökar}
+\end{tabular}
+}
+Skuldkontona används för de skulder föreningen har. Detta kan dels innehålla skulder till banker och leverantörer så väl som skulder till medlemmar. I företag går ägarna in med pengar när man startar företaget och företaget har då en skuld till ägarna. \acr{eta} har tidigare inte haft några skulder.
+
+\subsection{Intäktskonton}
+\marginnote[\baselineskip]{
+Konto: 3\,000--3\,999 (8\,000)\\
+\begin{tabular}{l|l}
+	\textbf{debet}			& \textbf{kredit} \\\hline
+	\emph{felkorrigering}	& \emph{får pengar}\\
+	inkomstminskning		& inkomstökning
+\end{tabular}
+}
+Medlemsavgifter, försäljning av mat och auktionsgods är exempel på intäkter till föreningen som bokförs på 3\,000-konton. Dessa konton används bara när föreningen har en faktiskt intäkt, om pengar flyttas från kassan till bankkontot är det ingen intäkt utan bara en flytt mellan två tillgångskonton.
+
+Man pratar sällan om negativa intäkter och debet-delen används nästan enbart för felkorrigeringar i det här kontoslaget.
+
+\subsection{Kostnadskonton}
+\marginnote[\baselineskip]{
+Konto: 4\,000--8\,999\\
+\begin{tabular}{l|l}
+	\textbf{debet}		& \textbf{kredit} \\\hline
+	\emph{varor köps}	& \emph{felkorrigering}\\
+	utgiftsökning		& utgiftsminskning
+\end{tabular}
+}
+Kostnader är allt ifrån inköp av gem och pennor så väl som gas till svetsen eller datorutrustning. Alla inköp som inte har ett bestående värde och är att betrakta som en investering är kostnader för föreningen. \emph{Bestående värde} är inte helt entydigt definierat, men om varan kan säljas vidare kan man anta att den har ett bestående värde. Värt att notera är att normalt bokförs till exempel datorutrustning som förbrukningsmateriel och har inte något bestående värde på samma sätt som dyrare maskiner.
+
+\acr{eta} har tidigare inte gjort några avskrivningar på maskiner och har inte heller krav på sig att göra så. \todo{tror jag i alla fall} Därför kan kostnadskonton används för nästan alla inköp.
+
+\subsection{Kontoplan}
+En kontoplan är en lista med konton som har dels ett nummer och ett namn. Det finns flera standardiserade kontoplaner, till exempel \acr{BAS} eller \acr{EU}. 
+Även om man kan hitta på en helt egen kontoplan så är det vanligaste att man följer en standardiserad plan och sedan lägger till eller tar bort konton som man behöver. \acr{eta} har till exempel inga anställda och äger inte heller fastigheter, så konton som rör det behövs inte.
+
+Kontoplanen som är föreslagen i den här skriften är baserad på \acr{BAS}-kontoplanen och sedan anpassad för \acr{eta}s behov. Detta gör det lätt att sätta sig och anpassa kontoplanen om behov uppstår.
+
+\section{Kostnadsställe}
+Ett kostnadsställe är en avgränsad enhet eller verksamhet inom organisationen och på \acr{eta} kan det till exempel vara Värkstaden, labbet eller auktionen. Det finns inget krav på att använda kostnadsställen och det går utmärkt att bokföra utan dessa. De kan dock underlätta att gruppera utgifter i organisatoriska grupper också och inte bara efter kontotyp, speciellt när man ska göra budgetuppföljning. 
+
+När man använder kostnadsställen anger man dels kostnadskonto och dels kostnadsställe.
+
+Kostnadsställen kan ibland ha ett annat namn i redovisningsprogrammet, i Visma administration heter det till exempel resultatenhet.
+
+\section{Kontant-- eller fakturametoden}
+I större företag används oftast fakturametoden för att bokföra fakturor. Metoden innebär att fakturor bokförs två gånger, dels när fakturan tas emot och dels när den betalas. När fakturan tas emot bokförs den som en skuld eller fordran och när fakturan faktiskt är betald bokför man bort skulden mot bankkontot.
+
+Mindre företag och föreningar \footnote{Nettoomsättning under 3 miljoner kronor och utan krav på att upprätta årsbokslut} kan istället använda kontantmetoden. Då bokförs fakturorna först då de betalas och man noterar alltså inte att föreningen har en skuld eller fordran. Detta underlättar bokföringen, men gör att man inte har samma insyn i nuläget. För \acr{eta} är inte värdet på fakturorna så stort att behov av större insyn finns. 
+

@@ -1,0 +1,276 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	Mall för enklare LaTeX-dokument
+%	Skriven av Viktor Ahlqvist
+%	http://www.texempelvis.se
+%
+%	Tänkt att användas tillsammans med LuaTeX, men bör fungera även i XeTeX
+%
+%	Notera att jag inte beskriver alla inställningar som finns till paketen, det
+%	är alltid en bra ide att läsa paketens manualer för att få reda på vilka 
+%	andra inställningar som finns. Manualerna finns dels på CTAN
+%	(http://www.ctan.net) eller via `texdoc` om TeX Live är installerat.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Nag är ett paket som bör stå överst i alla dokument. Det tillför inga nya
+% funktioner, men skriver varningar om man använder gamla, utdaterade,
+% kommandon.
+\RequirePackage[l2tabu, orthodox]{nag}
+
+% Dokumentklass som efterliknar Edvard Tuftes böcker.
+% Fungerar inget vidare, använd KOMA istället.
+\documentclass[%
+	a4paper,
+	twoside,
+	% justified,
+	% symmetric,
+	titlepage,
+	swedish,
+	]{scrbook}
+
+% Graphicx är det utökade grafikpaketet från 'graphics bundle'. Lägger till
+% en uppsjö kommandon kopplade till importerad grafik, skalning och annat.
+\usepackage{graphicx}
+
+% Ändra sidstorleken
+\usepackage{geometry}
+
+\geometry{a4paper,left=24.8mm,top=27.4mm,
+		headsep=2\baselineskip,textwidth=107mm,
+		marginparsep=8.2mm,marginparwidth=49.4mm,
+		textheight=49\baselineskip,headheight=\baselineskip}
+			
+% amsmath är en samling nästan nödvändiga paket för att typsätta matematik.
+% \usepackage[tbtags,intlimits]{amsmath}
+
+% Scrpage2 från KOMA-Script för sidhuvuden och -fötter.
+\usepackage{scrpage2}
+
+
+% Polyglossia är ett paket som lägger till flerspråksstöd i LaTeX. 
+\usepackage{polyglossia}
+\setdefaultlanguage{swedish}
+% \setotherlanguage[variant=uk]{english}
+
+%%% Typsnitt %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[oldstyle]{libertine}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Unicode-math, som bara fungerar på LuaTeX och XeTeX är ett paket för att ge
+% fullt unicode-stöd i matteläget och även göra det lätt att byta typsnitt.
+% \usepackage[math-style=ISO,bold-style=ISO,vargreek-shape=unicode]{unicode-math}
+% \setmathfont{Asana Math}
+
+% Microtype, "Subliminal refinements towards typographical perfection", är ett
+% paket som lägger till stöd för de mikrotypografiska verktyg som pdfTeX
+% ursprungligen introducerade, bl.a. 'character protusion' och 'font expansion'.
+\usepackage{microtype}
+
+% I engelska används punkt som decimalavskiljare och kommatecken för att 
+% separera element i listor. Icomma löser detta på magiskt sätt.
+% \usepackage{icomma}
+
+% siunitx är ett av mina favoritpaket. Paketets syfte är dels att erbjuda 
+% möjligheter till att typsätta enheter, men även kommandot \num för att 
+% formatera tal.
+% \usepackage{siunitx}
+% \sisetup{%
+% 	free-standing-units,		% Gör att enheterna från siunitx kan användas
+% 								% även utanför \SI och \si. Framförallt
+% 								% användbart för procent, men det kan även vara
+% 								% trevligt att kunna skriva \metre på
+% 								% godtyckligt ställe i rapporten.
+% 	exponent-product = \cdot,	% I sverige (och europa?) är det vanligast att
+% 								% använda en centrerad punkt som
+% 								% multiplikationssymbol.
+%     output-decimal-marker={,},	% Kommatecken som decimalavdelare i det
+% 								% utskrivna talet. Föredras punkt kan raden tas
+% 								% bort eller tecknet bytas ut.
+% 	output-complex-root = j,	% Om man är elektroteknolog använder man
+% 								% såklart j istället för i för att representera
+% 								% roten ur -1. Man kan t.ex. använda
+% 								% copy-complex-root istället för att få samma
+% 								% utskrift som man skrivit in i texten.
+% 	complex-root-position = before-number, % Komplexa tal kan antingen skrivas
+% 								% 5+j2 eller 5+2j. Jag föredrar den första
+% 								% notationen.
+% 	per-mode=symbol,			% Newton per meter kan antingen skrivas N/m
+% 								% eller Nm^-1. Jag föredrar det första
+% 								% skrivsättet.
+% 	group-digits=integer,		% Det är vanligt att gruppera tal tre och tre
+% 								% för att förenkla läsandet. Kommandot gör att
+% 								% så sker, men bara för heltalsdelen.
+% 	group-minimum-digits=4,		% Minsta antalet siffror som krävs för att det
+% 								% ska grupperas. 4 siffor = tusental.
+% 	group-separator = {\,},		% Styr vilken avgränsare som ska användas vid
+% 								% grupperingen. Svenska skrivregler (och
+% 								% ISO-standarder) förespråkar ett
+% 								% åttondelsfyrkantsmellanrum (thin space).
+% 	detect-display-math,		% Gör att siunitx känner av om den är i
+% 								% matteläge och använder dess typsnitt.
+% 	separate-uncertainty = true,% Om talen är angivna med osäkerhet kan man
+% 								% antingen skriva ut det som talet +-
+% 								% osäkerheten eller med de osäkra siffrorna i
+% 								% parantes. Kommandot växlar till +- osäkerhet.
+% }
+
+% Longtable för bättre tabeller
+\usepackage{longtable}
+
+% Booktabs, för bättre tabeller.
+\usepackage{booktabs}
+
+% Paketet wrapfig lägger till miljön wrapfigure och wraptable för att få text
+% att flyta runt en bild. Mer tänker jag inte skriva utan hänvisar till manualen
+% som beskriver dels syntaxen, dels saker man ska tänka på.
+%\usepackage{wrapfig}
+
+% Todo-notes, att göra listor
+\usepackage{todonotes}
+
+% Anteckningar i marginalen
+\usepackage{marginnote}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Här var det nästan slut på laddning av paket och vi börjar istället göra lite
+% andra iställningar och definitioner.
+
+% Byt multiplikationssymbol till punkt.
+\def\ctimes\times					% "Sparar" krysset i \ctimes
+% \AtBeginDocument för att vara kompatibelt med unicode-math
+\AtBeginDocument{\let\times\cdot}
+
+% Kommando för förkortningar
+%\newcommand{\acr}[1]{\textsc{\MakeLowercase{#1}}}
+\newcommand{\acr}[1]{\textsc{#1}}
+
+
+%% Nya miljöer som behövs
+% Hur man redovisar
+\newenvironment{redovisning}%
+{\marginnote[\baselineskip]{\textsc{löpande\\bokföring}}}%
+{}
+
+% Årsbokslut
+\newenvironment{bokslut}%
+{\marginnote[\baselineskip]{\textsc{årsbokslut}}}%
+{}
+
+% Skrota fullwidth och använd minipage
+% \makeatletter
+% \newlength{\fullwidthlength}
+% \AtBeginDocument{\setlength{\fullwidthlength}{\@tufte@fullwidth}}
+% \makeatother
+
+% Stäng av numrering av rubriker
+\setcounter{secnumdepth}{-1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lite KOMA-inställningar
+\setkomafont{disposition}{\normalfont}
+\setkomafont{pagehead}{\normalfont}
+\setkomafont{pagefoot}{\normalfont}
+
+% Sidhuvud och sidfot
+\clearscrheadfoot
+\ohead[\pagemark]{\pagemark}
+\pagestyle{scrheadings}
+
+% Titeln på dokumentet, inte särskilt svårt alls.
+\title{Instruktioner för redovisning}
+\publishers{E-sektionens teletekniska avdelning}
+% Författare ska separeras med \and för att utseendet ska bli rätt.
+\author{Viktor Ahlqvist}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ett sista paket ska dock laddas innan vi börjar skriva på dokumentet. 
+% hyperref är ett paket som lägger till möjligheten till interna och externa 
+% länkar i pdf-dokumenten. Som standard gör den t.ex. innehållsförteckningen 
+% till länkar.
+\usepackage{hyperref}
+\hypersetup{
+  unicode,					% För att få unicode-kodade pdfsträngar.
+  breaklinks,				% Tillåter att länkar radbryts.
+  pdfauthor = {Viktor},	% Sätter författare på dokumentet.
+  pdftitle = {Titel},		% Sätter titel på dokumentet
+  pdfsubject = {Redovisning},	% Ämne
+  pdfborder = {0 0 0},
+  bookmarksdepth = section,
+  citecolor = DarkGreen,
+  linkcolor = DarkBlue,
+  pagecolor = DarkBlue,
+  urlcolor = DarkGreen,
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Här börjar det faktiska innehållet till dokumentet.
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Här börjar frontmatter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+
+% \maketitle
+\makeatletter
+\begin{titlepage}
+	% \begin{flushright}
+	% \vspace*{0.45\textheight}
+	% {\Large \@title \\}
+	% {\large \@subtitle \\[1.5\baselineskip]}
+	% {\scshape \@author}
+	% \end{flushright}
+
+	\raggedleft
+	\vspace*{\baselineskip}
+	{\scshape \@author \\[0.4\textheight]}
+	{\Huge \@title \\[1.5\baselineskip]}
+	% {\large \@subtitle}
+
+\end{titlepage}
+\makeatother
+
+\newpage
+% \begin{fullwidth}
+~\vfill
+\thispagestyle{empty}
+% \setlength{\parindent}{0pt}
+% \setlength{\parskip}{\baselineskip}
+
+% Skriven av \thanklessauthor\ \the\year\ för \thanklesspublisher .
+
+\par\textsc{Typsatt med LuaTeX och dokumentklassen tufte-latex}
+
+\par Detta verk är licensierat under en \emph{Creative Commons Erkännande 4.0 Internationell Licens.}
+
+Licensen innebär att du får dela och distribuera materialet i sin helhet eller i delar. Du får även göra anpassningar och ändringar i materialet så länge du hänvisar till källan. Licensen finns att läsa på \url{http://creativecommons.org/licenses/by/4.0/} 
+
+\index{license}
+
+% \par\textit{First printing}
+% \end{fullwidth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inkludera förord
+\include{content/00-forord/main}
+
+\tableofcontents	% Skriver ut innehållsförteckning
+
+% \listoftodos		% Lista med 'att göra'-anteckningar
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Här börjar huvudinnehållet, main matter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+\part{Inledning}
+\include{content/01-inledning/main}
+
+\part{Redovisningsråd}
+\section{Lite text}
+
+\backmatter
+\part{Kontoplan}
+\include{content/03-kontoplan/main}
+
+\end{document}
