@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="redovisning.xsl" ?>
+
+<instruktioner>
+	<instruktion>
+		<titel>Tisdagsfika</titel>
+		<typ>referens</typ>
+		<introduktion>se medlemsförmåner</introduktion>
+		<bokforing></bokforing>
+		<bokslut></bokslut>
+		<kommentar></kommentar>
+	</instruktion>
+	
+	<instruktion>
+		<titel>Auktionssortering, mat</titel>
+		<typ>referens</typ>
+		<introduktion>se medlemsförmåner</introduktion>
+		<bokforing></bokforing>
+		<bokslut></bokslut>
+		<kommentar></kommentar>
+	</instruktion>
+	
+	<instruktion>
+		<titel>Mutgodis</titel>
+		<typ>referens</typ>
+		<introduktion>se medlemsförmåner</introduktion>
+		<bokforing></bokforing>
+		<bokslut></bokslut>
+		<kommentar></kommentar>
+	</instruktion>
+	
+	<instruktion>
+		<titel>Mat</titel>
+		<typ>referens</typ>
+		<introduktion>se medlemsförmåner</introduktion>
+		<bokforing></bokforing>
+		<bokslut></bokslut>
+		<kommentar></kommentar>
+	</instruktion>
+	
+	<instruktion>
+		<titel>Medlemsförmåner</titel>
+		<typ>post</typ>
+		<introduktion>Medlemmar i \acr{eta} har flera förmåner efter att man har gått med i föreningen. Man har tillgång till komponentförrådet, lokalen och har också tillgång till kostnadsfritt kaffe och tisdagsfika.
+		
+		Utgifter för komponentbaren och lokalen bokförs på sina respektive konton, under medlemsförmåner räknas de förmåner som inte strikt har med verksamheten. Här innefattas bland annat \emph{tisdagsfika, fritt kaffe, mat i samband med sorteringar} och \emph{mutgodis}. Exakt vad gränsen går mellan vanlig verksamhet och förmåner är inte entydigt definierat utan kassören får göra en bedömning i gränsfallen.
+		</introduktion>
+		<bokforing>Medlemsförmåner bokförs på konto \kref{7600} med tillhörande kostnadsställe.</bokforing>
+		<bokslut></bokslut>
+		<kommentar>Man skulle kunna kalla den här för \emph{föreningskvällar} som motsvarande kostnader har bokförts på tidigare. Det gör det dock inte tydligt att även kaffe, mutgodis och liknande bör hamna på det här kontot. Det är trots allt intressant att följa upp hur mycket pengar som läggs på förmåner till medlemmarna (till exempel kaffe).</kommentar>
+	</instruktion>	
+	
+	
+	
+	
+	
+	
+</instruktioner>
