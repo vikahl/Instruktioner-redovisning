@@ -168,9 +168,21 @@
 		
 		Eftersom medlemsavgifterna inte följer verksamhetsår kan man på samma sätt diskutera huruvida man ska periodisera alla avgifter över årsbrytet, men då antalet medlemmar är ganska konstant medför det här, precis som ovan nämnda punkt, mycket extraarbete för lite resultat.
 		</introduktion>
-		<bokforing>Medlemsavgifter krediteras kontot \kref{3100}. </bokforing>
+		<bokforing>Medlemsavgifter krediteras kontot \kref{3100}. Kostnadsställe behöver inte anges eftersom det bara finns en typ av inkomst.</bokforing>
 		<bokslut></bokslut>
 		<kommentar></kommentar>
 	</instruktion>
+	
+	<instruktion>
+		<titel>OBS-konto</titel>
+		<typ>post</typ>
+		<introduktion>I arbetet med bokföringen händer det ibland att det saknas underlag för en transaktion eller att det inte går att avgöra hur den ska bokföras. Gängse bokföringsregler \todo{källa behövs} säger att transaktioner ska bokföras i den ordning de har uppstått. För att inte bokföringsabetet ska avstanna helt när vid tidigare nämnda situationer kan ett \acr{obs}-konto, observationskonto, användas för att bokföra kostnaden på. Man debiterar då kostnaden på \acr{obs}-kontot och när underlaget sedan har kommit fram krediterar man \acr{obs}-kontot och debiterar rätt konto.
+		
+		Vid årsbokslutet ska saldot på \acr{obs}-kontot vara noll.
+		</introduktion>
+		<bokforing>Okända kostnader debiteras kontot \kref{2999} och när sedan kostnaden reds ut krediteras \kref{2999} och rätt konto debiteras.</bokforing>
+		<bokslut>Vid verksamhetsårets slut måste saldot på \acr{obs}-kontot vara noll. Om det finns kostnader man inte kan reda ut får en diskussion med revisorerna och styret tas för att komma fram hur det ska bokföras. Saldot \kref{6900} kan användas för kostnader som inte passar in på något annat konto.</bokslut>
+		<kommentar></kommentar>
+	</instruktion>	
 	
 </instruktioner>
