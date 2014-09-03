@@ -148,12 +148,14 @@
 %% Nya miljöer som behövs
 % Hur man redovisar
 \newenvironment{redovisning}%
-{\marginnote[\baselineskip]{\textsc{löpande\\bokföring}}}%
+% {\marginnote[\baselineskip]{\textsc{löpande\\bokföring}}}%
+{\textsc{löpande bokföring}\\}%
 {}
 
 % Årsbokslut
 \newenvironment{bokslut}%
-{\marginnote[\baselineskip]{\textsc{årsbokslut}}}%
+% {\marginnote[\baselineskip]{\textsc{årsbokslut}}}%
+{\textsc{årsbokslut}\\}%
 {}
 
 % Skrota fullwidth och använd minipage
@@ -162,6 +164,9 @@
 
 % Stäng av numrering av rubriker
 \setcounter{secnumdepth}{-1}
+
+% Kontoreferenser
+\newcommand{\kref}[1]{\textbf{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lite KOMA-inställningar
@@ -264,7 +269,7 @@ Licensen innebär att du får dela och distribuera materialet i sin helhet eller
 \include{content/01-inledning/main}
 
 \part{Redovisningsråd}
-\section{Lite text}
+\include{content/02-redovisning/main}
 
 \backmatter
 \part{Kontoplan}

@@ -1,44 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="redovisning.xsl" ?>
 
 <instruktioner>
-	<instruktion>
+	<instruktion typ="referens">
 		<titel>Tisdagsfika</titel>
-		<typ>referens</typ>
 		<introduktion>se medlemsförmåner</introduktion>
 		<bokforing></bokforing>
 		<bokslut></bokslut>
 		<kommentar></kommentar>
 	</instruktion>
 	
-	<instruktion>
+	<instruktion typ="referens">
 		<titel>Auktionssortering, mat</titel>
-		<typ>referens</typ>
 		<introduktion>se medlemsförmåner</introduktion>
 		<bokforing></bokforing>
 		<bokslut></bokslut>
 		<kommentar></kommentar>
 	</instruktion>
 	
-	<instruktion>
+	<instruktion typ="referens">
 		<titel>Mutgodis</titel>
-		<typ>referens</typ>
 		<introduktion>se medlemsförmåner</introduktion>
 		<bokforing></bokforing>
 		<bokslut></bokslut>
 		<kommentar></kommentar>
 	</instruktion>
 	
-	<instruktion>
+	<instruktion typ="referens">
 		<titel>Mat</titel>
-		<typ>referens</typ>
 		<introduktion>se medlemsförmåner</introduktion>
 		<bokforing></bokforing>
 		<bokslut></bokslut>
 		<kommentar></kommentar>
 	</instruktion>
 	
-	<instruktion>
+	<instruktion typ="post">
 		<titel>Medlemsförmåner</titel>
 		<typ>post</typ>
 		<introduktion>Medlemmar i \acr{eta} har flera förmåner efter att man har gått med i föreningen. Man har tillgång till komponentförrådet, lokalen och har också tillgång till kostnadsfritt kaffe och tisdagsfika.
@@ -50,16 +45,15 @@
 		<kommentar>Man skulle kunna kalla den här för \emph{föreningskvällar} som motsvarande kostnader har bokförts på tidigare. Det gör det dock inte tydligt att även kaffe, mutgodis och liknande bör hamna på det här kontot. Det är trots allt intressant att följa upp hur mycket pengar som läggs på förmåner till medlemmarna (till exempel kaffe).</kommentar>
 	</instruktion>	
 	
-	<instruktion>
+	<instruktion typ="referens">
 		<titel>Auktionshämtning</titel>
-		<typ>referens</typ>
 		<introduktion>se transporter</introduktion>
 		<bokforing></bokforing>
 		<bokslut></bokslut>
 		<kommentar></kommentar>
 	</instruktion>
 
-	<instruktion>
+	<instruktion typ="post">
 		<titel>Transporter</titel>
 		<typ>post</typ>
 		<introduktion>Speciellt i samband med auktionen förekommer det många transporter och därmed också utgifter för dessa. Transporter av varor förekommer även under resten av året, då det till exempel handlas till kylen.
@@ -77,34 +71,31 @@
 		<kommentar></kommentar>
 	</instruktion>
 	
-	<instruktion>
+	<instruktion typ="referens">
 		<titel>Förbrukningsinventarier</titel>
-		<typ>referens</typ>
 		<introduktion>se inventarier</introduktion>
 		<bokforing></bokforing>
 		<bokslut></bokslut>
 		<kommentar></kommentar>
 	</instruktion>
 	
-	<instruktion>
+	<instruktion typ="referens">
 		<titel>Gerät</titel>
-		<typ>referens</typ>
 		<introduktion>se inventarier</introduktion>
 		<bokforing></bokforing>
 		<bokslut></bokslut>
 		<kommentar></kommentar>
 	</instruktion>
 	
-	<instruktion>
+	<instruktion typ="referens">
 		<titel>Instrument</titel>
-		<typ>referens</typ>
 		<introduktion>se inventarier</introduktion>
 		<bokforing></bokforing>
 		<bokslut></bokslut>
 		<kommentar></kommentar>
 	</instruktion>
 	
-	<instruktion>
+	<instruktion typ="post">
 		<titel>Inventarier</titel>
 		<typ>post</typ>
 		<introduktion>lalala</introduktion>
@@ -113,7 +104,7 @@
 		<kommentar></kommentar>
 	</instruktion>	
 	
-	<instruktion>
+	<instruktion typ="post">
 		<titel>Förbrukningsmateriel</titel>
 		<typ>post</typ>
 		<introduktion>I förbrukningsmateriel ryms all inköpt materiel som inte har ett bestående värde och som förr eller senare förbrukas.
