@@ -27,6 +27,7 @@
 	% symmetric,
 	titlepage,
 	swedish,
+	DIV=7,
 	]{scrbook}
 
 % Graphicx är det utökade grafikpaketet från 'graphics bundle'. Lägger till
@@ -35,11 +36,16 @@
 
 % Ändra sidstorleken
 % \usepackage{geometry}
-
-% \geometry{a4paper,left=24.8mm,top=27.4mm,
-% 		headsep=2\baselineskip,textwidth=107mm,
-% 		marginparsep=8.2mm,marginparwidth=49.4mm,
-% 		textheight=49\baselineskip,headheight=\baselineskip}
+% \geometry{a4paper,
+% 		left=24.8mm,
+% 		top=27.4mm,
+% 		headsep=2\baselineskip,
+% 		textwidth=107mm,
+% 		marginparsep=8.2mm,
+% 		marginparwidth=49.4mm,
+% 		textheight=49\baselineskip,
+% 		headheight=\baselineskip}
+% \usepackage[DIV=6]{typearea}
 			
 % amsmath är en samling nästan nödvändiga paket för att typsätta matematik.
 % \usepackage[tbtags,intlimits]{amsmath}
@@ -148,25 +154,129 @@
 %% Nya miljöer som behövs
 % Hur man redovisar
 \newenvironment{redovisning}%
-% {\marginnote[\baselineskip]{\textsc{löpande\\bokföring}}}%
-{\textsc{löpande bokföring}\\}%
-{}
+{\vspace{\baselineskip}
+% \marginnote[\baselineskip]{\textsc{löpande\\bokföring}}}%
+\marginpar{\begin{flushright}\textsc{löpande\\bokföring}\end{flushright}}}%
+% {\textsc{löpande bokföring}\\}%
+{\vspace{\baselineskip}}
 
 % Årsbokslut
 \newenvironment{bokslut}%
+{\vspace{\baselineskip}
+\marginpar{\begin{flushright}\textsc{årsbokslut}\end{flushright}}}%
 % {\marginnote[\baselineskip]{\textsc{årsbokslut}}}%
-{\textsc{årsbokslut}\\}%
-{}
+% {\textsc{årsbokslut}\\}%
+{\vspace{\baselineskip}}
 
-% Skrota fullwidth och använd minipage
-\newlength{\fullwidthlength}
-\AtBeginDocument{\setlength{\fullwidthlength}{\textwidth}}
+% För full sidbredd
+\makeatletter
+	\newlength{\overhang}
+	\setlength{\overhang}{\marginparwidth}
+	\addtolength{\overhang}{\marginparsep}
+\makeatother
+
 
 % Stäng av numrering av rubriker
 \setcounter{secnumdepth}{-1}
 
+% Ta bort punkter i innehållsförteckningen
+\makeatletter
+	\renewcommand{\@dotsep}{10000} 
+\makeatother
+
 % Kontoreferenser
 \newcommand{\kref}[1]{\textbf{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% För 'tumindex'
+
+\usepackage[scale=1,angle=0,opacity=1]{background}
+\usetikzlibrary{calc}
+\usepackage{ifthen}
+\usepackage{lipsum}
+
+\backgroundsetup{contents={}}
+
+% \pagestyle{plain}
+
+% auxiliary counter
+\newcounter{partshift}
+\addtocounter{partshift}{-1}
+
+\definecolor{mp}{RGB}{240,240,240}
+
+\newcommand{\parttitle}{}
+\makeatletter
+\def\@part[#1]#2{%
+    \renewcommand\parttitle{#1}%
+    \ifnum \c@secnumdepth >-2\relax
+      \refstepcounter{part}%
+      \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+    \else
+      \addcontentsline{toc}{part}{#1}%
+    \fi
+    \markboth{}{}%
+    {\pf%
+      \centering
+     \interlinepenalty \@M
+     \normalfont
+     \ifnum \c@secnumdepth >-2\relax
+       \huge\bfseries \partname\nobreakspace\thepart
+       \par
+       \vskip 20\p@
+     \fi
+     \Huge \bfseries #2\par}%
+    \@endpart}
+\makeatother    
+
+% the main command; the mandatory argument sets the color of the vertical box
+\newcommand\pf{%
+\AddEverypageHook{%
+\ifthenelse{\isodd{\value{page}}}
+  {%
+    \backgroundsetup{%
+      contents={%
+        \begin{tikzpicture}[overlay,remember picture]
+        \node[
+          fill=mp,
+          inner sep=0pt,
+          outer sep=0pt,
+          rectangle,
+          text width=2cm,
+          minimum height=4cm,
+          align=center,
+          anchor=north east,
+        ] 
+        at ( $ (current page.north east) + (0,-2*\thepartshift cm) $ ) 
+        {\rotatebox{90}{\parbox[c][1.5cm][t]{3.5cm}{\textcolor{black}{\centering\parttitle}}}};
+    \end{tikzpicture}%
+       }%
+    }%    
+  }
+  {%
+    \backgroundsetup{%
+      contents={%
+      \begin{tikzpicture}[overlay,remember picture]
+      \node[
+        fill=mp,
+        inner sep=0pt,
+        outer sep=0pt,
+        rectangle,
+        text width=2cm,
+        minimum height=4cm,
+        align=center,
+        anchor=north west,
+      ] 
+      at ($ (current page.north west) + (0,-2*\thepartshift cm) $)
+      {\rotatebox{90}{\parbox[c][1.5cm][t]{3.5cm}{\textcolor{black}{\centering\parttitle}}}};
+      \end{tikzpicture}%
+        }%
+      }%  
+  }
+  \BgMaterial}%
+  \stepcounter{partshift}%
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lite KOMA-inställningar
@@ -176,7 +286,7 @@
 
 % Sidhuvud och sidfot
 \clearscrheadfoot
-\ohead[\pagemark]{\pagemark}
+\ofoot[\pagemark]{\pagemark}
 \pagestyle{scrheadings}
 
 % Titeln på dokumentet, inte särskilt svårt alls.
@@ -192,19 +302,20 @@
 % till länkar.
 \usepackage{hyperref}
 \hypersetup{
-  unicode,					% För att få unicode-kodade pdfsträngar.
-  breaklinks,				% Tillåter att länkar radbryts.
-  pdfauthor = {Viktor},	% Sätter författare på dokumentet.
-  pdftitle = {Titel},		% Sätter titel på dokumentet
+  unicode,						% För att få unicode-kodade pdfsträngar.
+  breaklinks,					% Tillåter att länkar radbryts.
+  pdfauthor = {Viktor},			% Sätter författare på dokumentet.
+  pdftitle = {Titel},			% Sätter titel på dokumentet
   pdfsubject = {Redovisning},	% Ämne
   pdfborder = {0 0 0},
   bookmarksdepth = section,
   citecolor = DarkGreen,
   linkcolor = DarkBlue,
-  pagecolor = DarkBlue,
   urlcolor = DarkGreen,
 }
 
+% Change URL font to the normal
+\renewcommand\UrlFont{\normalfont}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Här börjar det faktiska innehållet till dokumentet.
@@ -217,32 +328,33 @@
 % \maketitle
 \makeatletter
 \begin{titlepage}
-	% \begin{flushright}
-	% \vspace*{0.45\textheight}
-	% {\Large \@title \\}
+	\begin{flushright}
+	\vspace*{0.45\textheight}
+	{\Large \@title \\}
 	% {\large \@subtitle \\[1.5\baselineskip]}
-	% {\scshape \@author}
-	% \end{flushright}
+	{\scshape \@author}
+	\end{flushright}
 
-	\raggedleft
-	\vspace*{\baselineskip}
-	{\scshape \@author \\[0.4\textheight]}
-	{\Huge \@title \\[1.5\baselineskip]}
+	% \raggedleft
+	% \vspace*{\baselineskip}
+	% {\scshape \@author \\[0.4\textheight]}
+	% {\Huge \@title \\[1.5\baselineskip]}
 	% {\large \@subtitle}
 
 \end{titlepage}
 \makeatother
 
 \newpage
-% \begin{fullwidth}
+\begin{addmargin*}[0em]{-\overhang}
 ~\vfill
 \thispagestyle{empty}
+
 % \setlength{\parindent}{0pt}
 % \setlength{\parskip}{\baselineskip}
 
 % Skriven av \thanklessauthor\ \the\year\ för \thanklesspublisher .
 
-\par\textsc{Typsatt med LuaTeX och dokumentklassen tufte-latex}
+\par\textsc{Typsatt med latex med typsnittet linux libertine}\\[2\baselineskip]
 
 \par Detta verk är licensierat under en \emph{Creative Commons Erkännande 4.0 Internationell Licens.}
 
@@ -251,7 +363,7 @@ Licensen innebär att du får dela och distribuera materialet i sin helhet eller
 \index{license}
 
 % \par\textit{First printing}
-% \end{fullwidth}
+\end{addmargin*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Inkludera förord

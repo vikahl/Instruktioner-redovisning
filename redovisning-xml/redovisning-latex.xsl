@@ -18,15 +18,15 @@
 				<xsl:value-of select="introduktion" />
 			
 				\begin{redovisning}
-					Redovisning : <xsl:value-of select="bokforing" />
+					<xsl:value-of select="bokforing" />
 				\end{redovisning}
 			
 				\begin{bokslut}
-					Bokslut : <xsl:value-of select="bokslut" />
+					<xsl:value-of select="bokslut" />
 				\end{bokslut}
 			
 				\subsection{Kommentar}
-				<xsl:value-of select="kommentar" />
+				\emph{<xsl:value-of select="kommentar" />}
 			</xsl:if>
 			<xsl:if test="@typ='referens'">
 				\section{<xsl:value-of select="titel" />}

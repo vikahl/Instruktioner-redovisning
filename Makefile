@@ -2,6 +2,7 @@ all:xml
 	# Create files
 	
 	lualatex -shell-escape Instruktioner\ för\ redovisning
+	# lualatex -shell-escape Instruktioner\ för\ redovisning
 	
 xml:
 	rm content/02-redovisning/redovisning.tex
