@@ -14,19 +14,25 @@
 			<xsl:if test="@typ='post'">
 				\section{<xsl:value-of select="titel" />}
 				
+				<xsl:when test="kommentar != ''">
+					\todo{<xsl:value-of select="kommentar" />}
+				</xsl:when>
+				
 				<!-- \label{sec:<xsl:value-of select="titel" />} -->
 				<xsl:value-of select="introduktion" />
 			
-				\begin{redovisning}
-					<xsl:value-of select="bokforing" />
-				\end{redovisning}
+				<xsl:when test="bokforing != ''">
+					\begin{redovisning}
+						<xsl:value-of select="bokforing" />
+					\end{redovisning}
+				</xsl:when>
 			
-				\begin{bokslut}
-					<xsl:value-of select="bokslut" />
-				\end{bokslut}
-			
-				\subsection{Kommentar}
-				\emph{<xsl:value-of select="kommentar" />}
+				<xsl:when test="bokslut != ''">
+					\begin{bokslut}
+						<xsl:value-of select="bokslut" />
+					\end{bokslut}
+				</xsl:when>
+				
 			</xsl:if>
 			<xsl:if test="@typ='referens'">
 				\section{<xsl:value-of select="titel" />}
