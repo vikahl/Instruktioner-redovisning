@@ -5,7 +5,7 @@ all:xml
 	# lualatex -shell-escape Instruktioner\ för\ redovisning
 	
 xml:
-	rm content/02-redovisning/redovisning.tex
+	# rm content/02-redovisning/redovisning.tex
 
 	xsltproc -o content/02-redovisning/redovisning.tex redovisning-xml/redovisning-latex.xsl redovisning-xml/redovisning.xml
 

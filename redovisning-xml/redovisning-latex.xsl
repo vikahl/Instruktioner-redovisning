@@ -14,24 +14,24 @@
 			<xsl:if test="@typ='post'">
 				\section{<xsl:value-of select="titel" />}
 				
-				<xsl:when test="kommentar != ''">
+				<xsl:if test="kommentar != ''">
 					\todo{<xsl:value-of select="kommentar" />}
-				</xsl:when>
+				</xsl:if>
 				
 				<!-- \label{sec:<xsl:value-of select="titel" />} -->
 				<xsl:value-of select="introduktion" />
 			
-				<xsl:when test="bokforing != ''">
+				<xsl:if test="bokforing != ''">
 					\begin{redovisning}
 						<xsl:value-of select="bokforing" />
 					\end{redovisning}
-				</xsl:when>
+				</xsl:if>
 			
-				<xsl:when test="bokslut != ''">
+				<xsl:if test="bokslut != ''">
 					\begin{bokslut}
 						<xsl:value-of select="bokslut" />
 					\end{bokslut}
-				</xsl:when>
+				</xsl:if>
 				
 			</xsl:if>
 			<xsl:if test="@typ='referens'">

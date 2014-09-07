@@ -150,20 +150,32 @@
 %\newcommand{\acr}[1]{\textsc{\MakeLowercase{#1}}}
 \newcommand{\acr}[1]{\textsc{#1}}
 
+% För marginaler
+% \usepackage{mparhack}
+\usepackage{mparhack}
+\usepackage[side,flushmargin]{footmisc}
+% \let\oldmarginpar\marginpar
+% \renewcommand{\marginpar}[1]{%
+% 	\oldmarginpar[\raggedleft#1]{\raggedright#1}
+% }
+\newcommand{\raggedmarginpar}[1]{%
+	\marginpar[\raggedleft#1]{\raggedright#1}
+}
+
 
 %% Nya miljöer som behövs
 % Hur man redovisar
 \newenvironment{redovisning}%
 {\vspace{\baselineskip}
 % \marginnote[\baselineskip]{\textsc{löpande\\bokföring}}}%
-\marginpar{\begin{flushright}\textsc{löpande\\bokföring}\end{flushright}}}%
+\raggedmarginpar{\textsc{löpande\\bokföring}}}%
 % {\textsc{löpande bokföring}\\}%
 {\vspace{\baselineskip}}
 
 % Årsbokslut
 \newenvironment{bokslut}%
 {\vspace{\baselineskip}
-\marginpar{\begin{flushright}\textsc{årsbokslut}\end{flushright}}}%
+\raggedmarginpar{\textsc{årsbokslut}}}%
 % {\marginnote[\baselineskip]{\textsc{årsbokslut}}}%
 % {\textsc{årsbokslut}\\}%
 {\vspace{\baselineskip}}
@@ -178,6 +190,7 @@
 
 % Stäng av numrering av rubriker
 \setcounter{secnumdepth}{-1}
+\setcounter{tocdepth}{1}
 
 % Ta bort punkter i innehållsförteckningen
 \makeatletter
@@ -190,93 +203,95 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % För 'tumindex'
+% \usepackage{thumbs}
 
-\usepackage[scale=1,angle=0,opacity=1]{background}
-\usetikzlibrary{calc}
-\usepackage{ifthen}
-\usepackage{lipsum}
-
-\backgroundsetup{contents={}}
-
-% \pagestyle{plain}
-
-% auxiliary counter
-\newcounter{partshift}
-\addtocounter{partshift}{-1}
-
-\definecolor{mp}{RGB}{240,240,240}
-
-\newcommand{\parttitle}{}
-\makeatletter
-\def\@part[#1]#2{%
-    \renewcommand\parttitle{#1}%
-    \ifnum \c@secnumdepth >-2\relax
-      \refstepcounter{part}%
-      \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
-    \else
-      \addcontentsline{toc}{part}{#1}%
-    \fi
-    \markboth{}{}%
-    {\pf%
-      \centering
-     \interlinepenalty \@M
-     \normalfont
-     \ifnum \c@secnumdepth >-2\relax
-       \huge\bfseries \partname\nobreakspace\thepart
-       \par
-       \vskip 20\p@
-     \fi
-     \Huge \bfseries #2\par}%
-    \@endpart}
-\makeatother    
-
-% the main command; the mandatory argument sets the color of the vertical box
-\newcommand\pf{%
-\AddEverypageHook{%
-\ifthenelse{\isodd{\value{page}}}
-  {%
-    \backgroundsetup{%
-      contents={%
-        \begin{tikzpicture}[overlay,remember picture]
-        \node[
-          fill=mp,
-          inner sep=0pt,
-          outer sep=0pt,
-          rectangle,
-          text width=2cm,
-          minimum height=4cm,
-          align=center,
-          anchor=north east,
-        ] 
-        at ( $ (current page.north east) + (0,-2*\thepartshift cm) $ ) 
-        {\rotatebox{90}{\parbox[c][1.5cm][t]{3.5cm}{\textcolor{black}{\centering\parttitle}}}};
-    \end{tikzpicture}%
-       }%
-    }%    
-  }
-  {%
-    \backgroundsetup{%
-      contents={%
-      \begin{tikzpicture}[overlay,remember picture]
-      \node[
-        fill=mp,
-        inner sep=0pt,
-        outer sep=0pt,
-        rectangle,
-        text width=2cm,
-        minimum height=4cm,
-        align=center,
-        anchor=north west,
-      ] 
-      at ($ (current page.north west) + (0,-2*\thepartshift cm) $)
-      {\rotatebox{90}{\parbox[c][1.5cm][t]{3.5cm}{\textcolor{black}{\centering\parttitle}}}};
-      \end{tikzpicture}%
-        }%
-      }%  
-  }
-  \BgMaterial}%
-  \stepcounter{partshift}%
-}
+% Custom solution
+% \usepackage[scale=1,angle=0,opacity=1]{background}
+% \usetikzlibrary{calc}
+% \usepackage{ifthen}
+% \backgroundsetup{contents={}}
+%
+% % \pagestyle{plain}
+%
+% % auxiliary counter
+% \newcounter{partshift}
+% \addtocounter{partshift}{-1}
+%
+% \definecolor{mp}{RGB}{240,240,240}
+%
+% \newcommand{\parttitle}{}
+% \makeatletter
+% \def\@part[#1]#2{%
+%     \renewcommand\parttitle{#1}%
+%     \ifnum \c@secnumdepth >-2\relax
+%       \refstepcounter{part}%
+%       \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+%     \else
+%       \addcontentsline{toc}{part}{#1}%
+%     \fi
+%     \markboth{}{}%
+%     {\pf%
+%       \centering
+%      \interlinepenalty \@M
+%      \normalfont
+%      \ifnum \c@secnumdepth >-2\relax
+%        \huge\bfseries \partname\nobreakspace\thepart
+%        \par
+%        \vskip 20\p@
+%      \fi
+%      \Huge \bfseries #2\par}%
+%     \@endpart}
+% \makeatother
+%
+% % the main command; the mandatory argument sets the color of the vertical box
+% \newcommand\pf{%
+% \AddEverypageHook{%
+% \ifthenelse{\isodd{\value{page}}}
+%   {%
+%     \backgroundsetup{%
+%       contents={%
+%         \begin{tikzpicture}[overlay,remember picture]
+%         \node[
+%           fill=mp,
+%           inner sep=0pt,
+%           outer sep=0pt,
+%           rectangle,
+%           text width=2cm,
+%           minimum height=4cm,
+%           align=center,
+%           anchor=north east,
+% 		  % anchor=base,
+%         ]
+%         at ( $ (current page.north east) + (0,-2*\thepartshift cm) $ )
+%         {\rotatebox{90}{\parbox[c][1.5cm][t]{3.5cm}{\textcolor{black}{\centering\parttitle}}}};
+%     \end{tikzpicture}%
+%        }%
+%     }%
+%   }
+%   {%
+%     \backgroundsetup{%
+%       contents={%
+%       \begin{tikzpicture}[overlay,remember picture]
+%       \node[
+%         fill=mp,
+%         inner sep=0pt,
+%         outer sep=0pt,
+%         rectangle,
+%         text width=2cm,
+%         minimum height=4cm,
+%         align=center,
+%         anchor=north west,
+% 		% anchor=base,
+%       ]
+%       at ($ (current page.north west) + (0,-2*\thepartshift cm) $)
+%       {\rotatebox{90}{\parbox[c][1.5cm][t]{3.5cm}{\textcolor{black}{\centering\parttitle}}}};
+%       \end{tikzpicture}%
+%         }%
+%       }%
+%   }
+%   \BgMaterial}%
+%   \stepcounter{partshift}%
+% }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lite KOMA-inställningar
