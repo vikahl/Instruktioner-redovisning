@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<kontoplan>
+	<konto typ="tillgång">
+		<nummer>1510</nummer>
+		<titel>Fordringar medlemmar</titel>
+		<bas-titel>Kundfordringar</bas-titel>
+		<kommentar> Pengar som medlemmar är skyldiga ETA</kommentar>	
+	</konto>
+	<konto typ="tillgång">
+		<nummer>1515</nummer>
+		<titel>Osäkra fordringar medlemmar</titel>
+		<bas-titel>Osäkra kundfordringar</bas-titel>
+		<kommentar>Pengar som medlemmar är skyldiga men där det är oklart om man kommer få tillbaka.</kommentar>	
+	</konto>
+
+	<konto typ="tillgång">
+		<nummer>1600</nummer>
+		<titel>Övriga fordringar</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Andra personer än medlemmar som är skyldiga föreningen pengar.</kommentar>	
+	</konto>
+
+	<konto typ="tillgång">
+		<nummer>1910</nummer>
+		<titel>Kassa</titel>
+		<bas-titel></bas-titel>
+		<kommentar>För kassorna som förvaras inlåst lokalen</kommentar>	
+	</konto>
+
+	<konto typ="tillgång">
+		<nummer>1911</nummer>
+		<titel>Lokalkassa</titel>
+		<bas-titel></bas-titel>
+		<kommentar>För kassorna som medlemmarna har tillgång till.</kommentar>	
+	</konto>
+
+	<konto typ="tillgång">
+		<nummer>1930</nummer>
+		<titel>Checkkonto</titel>
+		<bas-titel>Företagskonto/checkkonto/afförskonto</bas-titel>
+		<kommentar>Bankkontot</kommentar>	
+	</konto>
+	
+	<konto typ="skuld">
+		<nummer>2440</nummer>
+		<titel>Leverantörsskulder</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Skulder föreningen har till medlemmar eller leverantörer</kommentar>	
+	</konto>
+	
+	<konto typ="skuld">
+		<nummer>2999</nummer>
+		<titel>OBS-konto</titel>
+		<bas-titel></bas-titel>
+		<kommentar>I den löpande bokföringen händer det ibland att det saknas underlag för en transaktion eller att det inte går att avgöra hur den ska bokföras. För att inte bokföringsarbetet ska avstanna använder men ett observationskonto som man sedan bokför från när underlaget är klart.</kommentar>	
+	</konto>
+	
+	<konto typ="intäkt">
+		<nummer>3100</nummer>
+		<titel>Medlemsavgifter</titel>
+		<bas-titel>Momsfria intäkter</bas-titel>
+		<kommentar></kommentar>	
+	</konto>
+	
+	<konto typ="intäkt">
+		<nummer>3610</nummer>
+		<titel>Försäljning av varor</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Försäljning av materiel och varor i lokalen. Inkluderar kyl, laminat och liknande varor som köps in och säljs löpande.</kommentar>	
+	</konto>
+	
+	<konto typ="intäkt">
+		<nummer>3611</nummer>
+		<titel>Förmedling av varor</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Vinst som föreningen gör på förmedling av varor, där medlemmar köper varor via ETA (och inget lager finns). Till exempel Farnell, Atmel och liknande.</kommentar>	
+	</konto>
+	
+	<konto typ="intäkt">
+		<nummer>3612</nummer>
+		<titel>Försäljning auktion</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Försäljningen under auktionen</kommentar>
+	</konto>
+	
+	<konto typ="intäkt">
+		<nummer>3740</nummer>
+		<titel>Öres- och kronutjämning</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Specialkonto som används för öresutjämning</kommentar>	
+	</konto>
+	
+	<konto typ="intäkt">
+		<nummer>3900</nummer>
+		<titel>Övriga intäkter</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Saker som helt enkelt inte täcks av något annat konto.</kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>4000</nummer>
+		<titel>Inköp av varor</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Inköp av varor som säljs i lokalen: mat, laminat och dylikt.</kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>5000</nummer>
+		<titel>Lokalkostnader</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Kostnader som rör fasta installationer i lokal.</kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>5400</nummer>
+		<titel>Förbrukningsmateriel</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Lödtenn, pennor, papper, städutrustningen och all annan materiel som inte har bestående värde.</kommentar>
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>5410</nummer>
+		<titel>Inventarier</titel>
+		<bas-titel>Förbrukningsinventarier</bas-titel>
+		<kommentar>Inköp av inventarier som inte ska skrivas av.</kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>5700</nummer>
+		<titel>Frakter och transporter</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Alla kostnader för transporter, till exempel auktionshämtning. Slår ihop kontogrupperna 56 och 57, då det inte finns någon anledning att särredovisa egna transporter (t.ex. drivmedel) och externa transporter (frakt) i olika grupper. Uppstår behovet kan man ändra till två kontogrupper.</kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>5900</nummer>
+		<titel>Reklam och PR</titel>
+		<bas-titel></bas-titel>
+		<kommentar>All form av medlemsrekryterande verksamhet.</kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>6000</nummer>
+		<titel>Övriga försäljningskostnader</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Kostnader som uppstår i samband med försäljning och förmedling av varor.</kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>6210</nummer>
+		<titel>Telekommunikation</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Telefonen som står i lokalen.</kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>6250</nummer>
+		<titel>Postbefordran</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Post och porto. Dock ej kuvert, det är förbrukningsmateriel.</kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>6310</nummer>
+		<titel>Försäkringar</titel>
+		<bas-titel></bas-titel>
+		<kommentar></kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>6570</nummer>
+		<titel>Bankkostnader</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Avgifter till banken för till exempel konto och bankkort. Även transaktionskostnader.</kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>6900</nummer>
+		<titel>Övriga kostnader</titel>
+		<bas-titel></bas-titel>
+		<kommentar></kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>6970</nummer>
+		<titel>Tidningar, tidskrifter och facklitteratur</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Biblioteket, prenumeration på Kalle Anka och liknande.</kommentar>	
+	</konto>
+	
+	<konto typ="kostnad">
+		<nummer>7600</nummer>
+		<titel>Förmåner medlemmar</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Allt som ges till medlemmar, så som kaffe, tisdagsfika och medlemsträffar.</kommentar>	
+	</konto>
+	
+	<konto typ="intäkt">
+		<nummer>8310</nummer>
+		<titel>Ränteintäkter</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Räntan som fås på bankkontot.</kommentar>	
+	</konto>
+	
+	
+	<konto typ="kostnad">
+		<nummer>8999</nummer>
+		<titel>Årets resultat</titel>
+		<bas-titel></bas-titel>
+		<kommentar>Förklara och ordna med motkonto.</kommentar>	
+	</konto>
+
+</kontoplan>
