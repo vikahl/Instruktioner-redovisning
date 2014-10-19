@@ -7,6 +7,7 @@
 		<bas-titel>Kundfordringar</bas-titel>
 		<kommentar> Pengar som medlemmar är skyldiga ETA</kommentar>	
 	</konto>
+	
 	<konto typ="tillgång">
 		<nummer>1515</nummer>
 		<titel>Osäkra fordringar medlemmar</titel>

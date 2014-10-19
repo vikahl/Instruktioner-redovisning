@@ -9,45 +9,58 @@
 	
 	<xsl:template match="/">
 	
-		\section{Tillgångskonton}
-		\label{sec:kontoplan:tillgång}
-		\begin{longtable}[l]{l p{0.4\linewidth} p{0.4\linewidth}}
-			Konto	&	Namn	&	Kommentar	\\\toprule\endhead
-				<xsl:for-each select="kontoplan/konto@typ='tillgång'">
+		\begin{adjustwidth}{}{-8em}
+			\section{Tillgångskonton}
+			\label{sec:kontoplan:tillgång}
+			\tablefirsthead{Konto	&amp;	Namn	&amp;	Kommentar	\\\toprule}
+			\begin{xtabular}[l]{l p{0.4\linewidth} p{0.6\linewidth}}
+				<xsl:for-each select="kontoplan/konto[@typ='tillgång']">
 					<xsl:sort select="nummer" order="ascending"/>
-						<xsl:value-of select="nummer" /> & <xsl:value-of select="titel" /> & <xsl:value-of select="kommentar" />
-			</xsl:for-each>
-		\end{longtable}
+						<xsl:value-of select="nummer" /> &amp; <xsl:value-of select="titel" /> &amp; <xsl:value-of select="kommentar" /> \\
+				</xsl:for-each>
+			\end{xtabular}
+		\end{adjustwidth}
 		
-		\section{Skuldkonton}
-		\label{sec:kontoplan:skuld}
-		\begin{longtable}[l]{l p{0.4\linewidth} p{0.4\linewidth}}
-			Konto	&	Namn	&	Kommentar	\\\toprule\endhead
-				<xsl:for-each select="kontoplan/konto@typ='skuld'">
-					<xsl:sort select="nummer" order="ascending"/>
-						<xsl:value-of select="nummer" /> & <xsl:value-of select="titel" /> & <xsl:value-of select="kommentar" />
-			</xsl:for-each>
-		\end{longtable}
+		\clearpage
+		\begin{adjustwidth}{-8em}{}
+			\section{Skuldkonton}
+			\label{sec:kontoplan:skuld}
+			\tablefirsthead{Konto	&amp;	Namn	&amp;	Kommentar	\\\toprule}
+			\begin{xtabular}[l]{l p{0.4\linewidth} p{0.6\linewidth}}
+				<!-- Konto	&amp;	Namn	&amp;	Kommentar	\\\toprule -->
+					<xsl:for-each select="kontoplan/konto[@typ='skuld']">
+						<xsl:sort select="nummer" order="ascending"/>
+							<xsl:value-of select="nummer" /> &amp; <xsl:value-of select="titel" /> &amp; <xsl:value-of select="kommentar" /> \\
+				</xsl:for-each>
+			\end{xtabular}
+		\end{adjustwidth}
 	
-		\section{Intäktskonton}
-		\label{sec:kontoplan:intäkt}
-		\begin{longtable}[l]{l p{0.4\linewidth} p{0.4\linewidth}}
-			Konto	&	Namn	&	Kommentar	\\\toprule\endhead
-				<xsl:for-each select="kontoplan/konto@typ='intäkt'">
-					<xsl:sort select="nummer" order="ascending"/>
-						<xsl:value-of select="nummer" /> & <xsl:value-of select="titel" /> & <xsl:value-of select="kommentar" />
-			</xsl:for-each>
-		\end{longtable}
-
-		\section{Kostnadskonto}
-		\label{sec:kontoplan:kostnad}
-		\begin{longtable}[l]{l p{0.4\linewidth} p{0.4\linewidth}}
-			Konto	&	Namn	&	Kommentar	\\\toprule\endhead
-				<xsl:for-each select="kontoplan/konto@typ='kostnad'">
-					<xsl:sort select="nummer" order="ascending"/>
-						<xsl:value-of select="nummer" /> & <xsl:value-of select="titel" /> & <xsl:value-of select="kommentar" />
-			</xsl:for-each>
-		\end{longtable}
+		\begin{adjustwidth}{-8em}{}
+			\section{Intäktskonton}
+			\label{sec:kontoplan:intäkt}
+			\tablefirsthead{Konto	&amp;	Namn	&amp;	Kommentar	\\\toprule}
+			\begin{xtabular}[l]{l p{0.4\linewidth} p{0.6\linewidth}}
+				<!-- Konto	&amp;	Namn	&amp;	Kommentar	\\\toprule -->
+					<xsl:for-each select="kontoplan/konto[@typ='intäkt']">
+						<xsl:sort select="nummer" order="ascending"/>
+							<xsl:value-of select="nummer" /> &amp; <xsl:value-of select="titel" /> &amp; <xsl:value-of select="kommentar" /> \\
+				</xsl:for-each>
+			\end{xtabular}
+		\end{adjustwidth}
+		
+		\clearpage
+		\begin{adjustwidth}{}{-8em}
+			\section{Kostnadskonto}
+			\label{sec:kontoplan:kostnad}
+			\tablefirsthead{Konto	&amp;	Namn	&amp;	Kommentar	\\\toprule}
+			\begin{xtabular}[l]{l p{0.4\linewidth} p{0.6\linewidth}}
+				<!-- Konto	&amp;	Namn	&amp;	Kommentar	\\\toprule -->
+					<xsl:for-each select="kontoplan/konto[@typ='kostnad']">
+						<xsl:sort select="nummer" order="ascending"/>
+							<xsl:value-of select="nummer" /> &amp; <xsl:value-of select="titel" /> &amp; <xsl:value-of select="kommentar" /> \\
+				</xsl:for-each>
+			\end{xtabular}
+		\end{adjustwidth}
 
 	</xsl:template>
 </xsl:stylesheet>

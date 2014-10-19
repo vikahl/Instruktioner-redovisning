@@ -177,10 +177,54 @@
 	
 	<instruktion typ="post">
 		<titel>Förmedling av varor</titel>
-		<introduktion></introduktion>
+		<introduktion>Föreningen organiserar regelbundet sambeställningar av komponenter och andra varor från olika leverantörer. För närvarande har \acr{eta} ett bra avtal med Farnell och de flesta beställningar sker därigenom. Tidigare har dock beställningar skett även från Digikey och Mouser.
+			De här beställningarna skiljer sig från de varor som säljs i lokalen i och med att föreningen aldrig köper på sig något varulager som har värde, utan man förmedlar en beställningstjänst. Därför bör de inte heller bokföras som en kostnad, utan direkt som en fordran för medlemmar.</introduktion>
 		
-		<bokforing></bokforing>
-		<bokslut></bokslut>
+		<bokforing>I och med att inget varulager köps in bör inte heller något sådant bokföras. När kostnaden uppstår krediteras det tillgångskontot som har belastats (till exempel \kref{1930}) och \kref{1510} debiteras.
+		
+			När medlemmarna sedan betalar för sin beställning krediteras fordringskontot (till exempel \kref{1510}) och tillgångskontot (till exempel \kref{1930}) debiteras.
+		
+			Eventuella vinster eller förluster i samband med förmedlingen belastar lämpligen intäktskontot \kref{3611} eller kostnadskontot \kref{6000}.</bokforing>
+		<bokslut>Vid årets slut bör förhoppningsvis de flesta fordringarna blivit betalda. Eventuella fordringar som är kvar redovisas som tillgångar i den ekonomiska rapporten.
+		
+			De fordringar som man antar inte kommer betalas förs lämpligen över till kontot \kref{1515}.</bokslut>
 		<kommentar></kommentar>
 	</instruktion>		
 </instruktioner>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
