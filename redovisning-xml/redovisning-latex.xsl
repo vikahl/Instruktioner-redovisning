@@ -20,7 +20,7 @@
 				
 				<!-- \label{sec:<xsl:value-of select="titel" />} -->
 				<xsl:value-of select="introduktion" />
-			
+
 				<xsl:if test="bokforing != ''">
 					\begin{redovisning}
 						<xsl:value-of select="bokforing" />

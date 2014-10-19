@@ -28,6 +28,7 @@
 	titlepage,
 	swedish,
 	DIV=7,
+	final,
 	]{scrbook}
 
 % Graphicx är det utökade grafikpaketet från 'graphics bundle'. Lägger till
@@ -122,6 +123,8 @@
 
 % Longtable för bättre tabeller
 \usepackage{longtable}
+% Xtab, för bättre tabeller
+\usepackage{xtab}
 
 % Booktabs, för bättre tabeller.
 \usepackage{booktabs}
@@ -132,10 +135,13 @@
 %\usepackage{wrapfig}
 
 % Todo-notes, att göra listor
-\usepackage{todonotes}
+\usepackage[obeyFinal]{todonotes}
 
 % Anteckningar i marginalen
 \usepackage{marginnote}
+
+% Changepage, för att leka med marginaler
+\usepackage[strict]{changepage}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Här var det nästan slut på laddning av paket och vi börjar istället göra lite
@@ -200,6 +206,12 @@
 % Kontoreferenser
 \newcommand{\kref}[1]{\textbf{#1}}
 
+
+% Tabeller
+\renewcommand*{\tableformat}{%
+  \tablename%~\thetable%
+%  \autodot% DELETED
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % För 'tumindex'
@@ -308,7 +320,7 @@
 \title{Instruktioner för redovisning}
 \publishers{E-sektionens teletekniska avdelning}
 % Författare ska separeras med \and för att utseendet ska bli rätt.
-\author{Viktor Ahlqvist}
+\author{E-sektionens teletekniska avdelning}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Ett sista paket ska dock laddas innan vi börjar skriva på dokumentet. 
@@ -320,7 +332,7 @@
   unicode,						% För att få unicode-kodade pdfsträngar.
   breaklinks,					% Tillåter att länkar radbryts.
   pdfauthor = {Viktor},			% Sätter författare på dokumentet.
-  pdftitle = {Titel},			% Sätter titel på dokumentet
+  pdftitle = {o},			% Sätter titel på dokumentet
   pdfsubject = {Redovisning},	% Ämne
   pdfborder = {0 0 0},
   bookmarksdepth = section,
@@ -364,25 +376,20 @@
 ~\vfill
 \thispagestyle{empty}
 
-% \setlength{\parindent}{0pt}
-% \setlength{\parskip}{\baselineskip}
+\textsc{Typsatt med luatex/latex och typsnittet linux libertine}\\[2\baselineskip]
 
-% Skriven av \thanklessauthor\ \the\year\ för \thanklesspublisher .
+Detta verk är licensierat under en \emph{Creative Commons Erkännande 4.0 Internationell Licens.}
 
-\par\textsc{Typsatt med latex med typsnittet linux libertine}\\[2\baselineskip]
+Licensen innebär att du får dela och distribuera materialet i sin helhet eller i delar. Du får även göra anpassningar och ändringar i materialet så länge du hänvisar till källan. Licensen finns att läsa på \url{http://creativecommons.org/licenses/by/4.0/}\\[1.2\baselineskip]
 
-\par Detta verk är licensierat under en \emph{Creative Commons Erkännande 4.0 Internationell Licens.}
 
-Licensen innebär att du får dela och distribuera materialet i sin helhet eller i delar. Du får även göra anpassningar och ändringar i materialet så länge du hänvisar till källan. Licensen finns att läsa på \url{http://creativecommons.org/licenses/by/4.0/} 
+Den här skriften och koden som producerar den finns att tillgå på \url{https://github.com/vikahl/Instruktioner-redovisning/}. Hittar ni några felaktigheter eller förslag på förbättringar får ni gärna rapportera dessa där.
 
-\index{license}
-
-% \par\textit{First printing}
 \end{addmargin*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Inkludera förord
-\include{content/00-forord/main}
+% \include{content/00-forord/main}
 
 \tableofcontents	% Skriver ut innehållsförteckning
 
