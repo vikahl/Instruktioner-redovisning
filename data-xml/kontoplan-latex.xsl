@@ -8,7 +8,8 @@
 		indent="yes" />
 	
 	<xsl:template match="/">
-	
+		% Genererad från kontplan.xml med kontoplan-latex.xsl
+		
 		\begin{adjustwidth}{}{-8em}
 			\section{Tillgångskonton}
 			\label{sec:kontoplan:tillgång}

@@ -8,6 +8,7 @@
 		indent="yes" />
 	
 	<xsl:template match="/">
+		% Genererad från redovisning.xml med redovisning-latex.xsl
 		<xsl:for-each select="instruktioner/instruktion">
 			<xsl:sort select="titel" order="ascending"/>
 			
