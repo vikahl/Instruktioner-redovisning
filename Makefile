@@ -5,8 +5,8 @@ all:xml
 	# lualatex -shell-escape Instruktioner\ för\ redovisning
 	
 xml:
-	xsltproc -o content/02-redovisning/redovisning.tex redovisning-xml/redovisning-latex.xsl redovisning-xml/redovisning.xml
-	xsltproc -o content/03-kontoplan/kontoplan-kontoplan.tex redovisning-xml/kontoplan-latex.xsl redovisning-xml/kontoplan.xml
+	xsltproc -o content/02-redovisning/redovisning.tex data-xml/redovisning-latex.xsl data-xml/redovisning.xml
+	xsltproc -o content/03-kontoplan/kontoplan-kontoplan.tex data-xml/kontoplan-latex.xsl data-xml/kontoplan.xml
 	
 	
 clean:
