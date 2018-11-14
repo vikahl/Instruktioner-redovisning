@@ -1,3 +1,5 @@
+Arkiverad: Det här repot är arkiverat, kommer inte längre att uppdateras, och instruktionerna stämmer inte med hur ekonomin på ETA fungerar.
+
 Instruktioner för redovisning
 ===========================
 
